@@ -1,0 +1,82 @@
+﻿@page
+@model assignment4.Pages.Orders.IndexModel
+
+@{
+    ViewData["Title"] = "High Value Orders";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<form>
+    <p>
+        
+        Sales Rep:
+        @Html.DropDownList("EmpId", (IEnumerable<SelectListItem>)Model.SalesPerson, "All Sales Reps", new { onchange = "submit()" })
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].OrderDate)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].ShippedDate)
+            </th>
+            <th>
+                Shipper
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Freight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].ShipName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].ShipRegion)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].ShipCountry)
+            </th>
+           
+           
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Order) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipViaNavigation.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Freight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipName)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipRegion)
+                </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipCountry)
+            </td>
+           
+            
+            
+        </tr>
+}
+    </tbody>
+</table>
